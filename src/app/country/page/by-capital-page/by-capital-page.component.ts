@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContryServiceService } from '../../services/contry-service.service';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -8,7 +8,7 @@ import { ContryServiceService } from '../../services/contry-service.service';
 })
 export class ByCapitalPageComponent implements OnInit {
 
-  constructor(private countryService: ContryServiceService) { }
+  constructor(private countryService: CountryService) { }
 
   get listCountries(){
     return this.countryService.listCountries;
