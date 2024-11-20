@@ -10,4 +10,17 @@
             <th scope="col"></th>
           </tr>
     </thead>
+    <tbody>
+        <tr *ngFor="let country of countries; let i = index">
+            <th>{{ i+1 }}</th>
+            <th>{{ 'icon' }}</th>
+            <th>{{ 'bandera' }}</th>
+            <th>{{ country.capital }}</th>
+            <th>{{ country.capital }}</th>
+            <th>{{ country.capital }}</th>
+            <th>
+                <a href="" class="link-underline-primary">info</a>
+            </th>
+        </tr>
+    </tbody>
 </table>
