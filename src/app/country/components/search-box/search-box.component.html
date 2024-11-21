@@ -1,1 +1,6 @@
-<input class="form-control" type="text" /> 
+<input 
+    class="form-control" 
+    type="text"
+    (input)="search()" 
+    [(ngModel)]="searchText"
+    placeholder="entry search ..." /> 

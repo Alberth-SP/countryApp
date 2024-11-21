@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'country-search-box',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBoxComponent implements OnInit {
 
-  constructor() { }
+  searchText: string = '';
+
+  constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
+
+  }
+
+  search(): void {
+    
+    this.countryService.searchByPais(this.searchText);
+
   }
 
 }

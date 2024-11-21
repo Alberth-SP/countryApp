@@ -6,6 +6,7 @@ import { ByCapitalPageComponent } from './page/by-capital-page/by-capital-page.c
 import { CountryRoutingModule } from './country-routing.module';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { ResultsTableComponent } from './components/results-table/results-table.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,6 +21,7 @@ import { ResultsTableComponent } from './components/results-table/results-table.
   imports: [
     CommonModule,
     CountryRoutingModule,
+    FormsModule
     
   ]
 })
