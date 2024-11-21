@@ -7,6 +7,7 @@ import { CountryRoutingModule } from './country-routing.module';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { ResultsTableComponent } from './components/results-table/results-table.component';
 import { FormsModule } from '@angular/forms';
+import { DetailPaisPageComponent } from './page/detail-pais-page/detail-pais-page.component';
 
 
 
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     ByRegionPageComponent,
     ByCapitalPageComponent,
     SearchBoxComponent,
-    ResultsTableComponent
+    ResultsTableComponent,
+    DetailPaisPageComponent
   ],
   imports: [
     CommonModule,
