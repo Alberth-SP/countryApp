@@ -10,12 +10,18 @@ export class ByRegionPageComponent implements OnInit {
 
   constructor(private countryService: CountryService) { }
 
+  searchByRegion = (text: string) => {
+    this.countryService.searchByRegion(text);
+  }
+
 
   get listCountries() {
     return this.countryService.listCountries;
   }
 
   ngOnInit(): void {
+    console.log("INGRESANDO X REGION ");
+    this.countryService.uploadDataCountries();
   }
 
 }

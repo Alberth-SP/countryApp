@@ -14,7 +14,13 @@ export class ByCapitalPageComponent implements OnInit {
     return this.countryService.listCountries;
   }
 
+  searchByCapital = (text: string) => {
+    this.countryService.searchByCapital(text);
+  }
+
   ngOnInit(): void {
+    console.log("INGRESANDO X CAPITAL ");
+    this.countryService.uploadDataCountries();
   }
 
 }

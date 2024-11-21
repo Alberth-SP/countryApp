@@ -10,12 +10,18 @@ export class ByPaisPageComponent implements OnInit {
 
   constructor(private serviceCountry: CountryService) { }
 
+  searchByPais = (text: string) => {
+    this.serviceCountry.searchByPais(text);
+  }
+
 
   get listCountries () {
     return this.serviceCountry.listCountries;
   }
 
   ngOnInit(): void {
+    console.log("INGRESANDO X PAIS ");
+    this.serviceCountry.uploadDataCountries();
   }
 
 }
