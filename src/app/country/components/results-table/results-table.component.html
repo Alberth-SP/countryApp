@@ -23,7 +23,7 @@
             <td>{{ country.capital }}</td>
             <td>{{ country.poblacion }}</td>
             <td>
-                <a href="" class="link-underline-primary">info</a>
+                <a  [routerLink]="['/countries/detail', country.code]" class="link-underline-primary">info</a>
             </td>
         </tr>
     </tbody>
