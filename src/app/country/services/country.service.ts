@@ -15,10 +15,26 @@ export class CountryService {
     return [...this._listCountries];
   }
 
+  uploadDataCountries() {
+    this._listCountries = LIST_COUNTRIES;
+  }
+
   searchByPais(country: string){
     console.log(">>> SEARCH2: " +  country.toUpperCase());
     
     this._listCountries =  LIST_COUNTRIES.filter(c => c.nombre.toUpperCase().includes(country.toUpperCase()));
+  }
+
+  searchByRegion(region: string){
+    console.log(">>> SEARCH2: " +  region.toUpperCase());
+    
+    this._listCountries =  LIST_COUNTRIES.filter(c => c.region.toUpperCase().includes(region.toUpperCase()));
+  }
+
+  searchByCapital(capital: string){
+    console.log(">>> SEARCH2: " +  capital.toUpperCase());
+    
+    this._listCountries =  LIST_COUNTRIES.filter(c => c.capital.toUpperCase().includes(capital.toUpperCase()));
   }
 
 
