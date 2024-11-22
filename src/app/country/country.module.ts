@@ -23,7 +23,8 @@ import { DetailPaisPageComponent } from './page/detail-pais-page/detail-pais-pag
   imports: [
     CommonModule,
     CountryRoutingModule,
-    FormsModule
+    FormsModule,
+    
     
   ]
 })
