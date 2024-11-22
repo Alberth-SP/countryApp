@@ -1,4 +1,9 @@
-<table class="table">
+
+<div *ngIf="countries.length === 0" class="alert alert-danger" role="alert">
+    No se encontraron resultados
+</div>
+
+<table class="table"  *ngIf="countries.length > 0">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -21,7 +26,7 @@
             </td>
             <td>{{ country.nombre }}</td>
             <td>{{ country.capital }}</td>
-            <td>{{ country.poblacion }}</td>
+            <td>{{ country.poblacion | number }}</td>
             <td>
                 <a  [routerLink]="['/countries/detail', country.code]" class="link-underline-primary">info</a>
             </td>
