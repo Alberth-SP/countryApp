@@ -37,6 +37,14 @@ export class CountryService {
     this._listCountries =  LIST_COUNTRIES.filter(c => c.capital.toUpperCase().includes(capital.toUpperCase()));
   }
 
+  findCountryByCode(code: string): Country | null {
+    console.log(">>> findCountryByCode: " +  code.toUpperCase());
+    
+    let countries =  LIST_COUNTRIES.filter(c => c.code.toUpperCase() === code.toUpperCase());
+    console.log(countries);
+    return (countries && countries.length > 0)  ? countries[0] : null;
+  }
+
 
 
 }

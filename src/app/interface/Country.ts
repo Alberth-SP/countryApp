@@ -7,5 +7,5 @@ export interface Country {
     poblacion: number;
     code: string;
     region: string;
-
+    traducciones: string [];
 }

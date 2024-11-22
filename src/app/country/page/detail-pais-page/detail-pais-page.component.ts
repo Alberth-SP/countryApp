@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Country } from 'src/app/interface/Country';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-detail-pais-page',
@@ -12,12 +13,12 @@ export class DetailPaisPageComponent implements OnInit {
   
   country: Country | null = null;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private countryService: CountryService) { }
 
   ngOnInit(): void {
-
-    var valor = this.route.snapshot.paramMap.get('code');
-    console.log(valor);
+    let code = this.route.snapshot.paramMap.get('code');
+    this.country = this.countryService.findCountryByCode(code!);
+    console.log(code);
 
   }
 
