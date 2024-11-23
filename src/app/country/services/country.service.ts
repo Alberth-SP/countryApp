@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Country } from 'src/app/interface/Country';
-import { LIST_COUNTRIES } from 'src/app/country/data/data';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
