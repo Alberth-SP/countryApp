@@ -17,8 +17,10 @@ export class DetailPaisPageComponent implements OnInit {
 
   ngOnInit(): void {
     let code = this.route.snapshot.paramMap.get('code');
-    this.country = this.countryService.findCountryByCode(code!);
-    console.log(code);
+    this.countryService.findCountryByCode(code!).subscribe(
+      c => { this.country = c;  }
+    );
+    //console.log(code);
 
   }
 

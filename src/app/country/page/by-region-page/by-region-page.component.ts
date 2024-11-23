@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from '../../services/country.service';
+import { Country } from 'src/app/interface/Country';
 
 @Component({
   selector: 'app-by-region-page',
@@ -8,20 +9,16 @@ import { CountryService } from '../../services/country.service';
 })
 export class ByRegionPageComponent implements OnInit {
 
+  public listCountries: Country[] = [];
+
   constructor(private countryService: CountryService) { }
 
   searchByRegion = (text: string) => {
-    this.countryService.searchByRegion(text);
+    this.countryService.searchByRegion(text).subscribe(
+      countries => { this.listCountries = countries; }
+    )
   }
 
-
-  get listCountries() {
-    return this.countryService.listCountries;
-  }
-
-  ngOnInit(): void {
-    console.log("INGRESANDO X REGION ");
-    this.countryService.uploadDataCountries();
-  }
+  ngOnInit(): void {}
 
 }

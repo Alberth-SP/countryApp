@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Country } from 'src/app/interface/Country';
 import { LIST_COUNTRIES } from 'src/app/country/data/data';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,27 +11,10 @@ export class CountryService {
 
   static readonly urlApi = "https://restcountries.com/v3.1";
 
-  private _listCountries: Country[] = []; //LIST_COUNTRIES;
-
   constructor(private http: HttpClient) { }
+  
 
-  get listCountries() {
-    return [...this._listCountries];
-  }
-
-  uploadDataCountries() {
-    this._listCountries = []; //LIST_COUNTRIES;
-  }
-
-  searchByPais(country: string){
-    console.log(">>> SEARCH2: " +  country.toUpperCase());
-    this.searchByPaisv2(country).subscribe(
-      countries =>  {this._listCountries = countries;}
-    );
-    //this._listCountries =  LIST_COUNTRIES.filter(c => c.nombre.toUpperCase().includes(country.toUpperCase()));
-  }
-
-  searchByPaisv2(name: string): Observable<any[]>{    
+  searchByPais(name: string): Observable<any[]>{    
     return this.http.get<any[]>(`${CountryService.urlApi}/name/${name}`)
       .pipe(
         map( countries => countries.map( c => ({
@@ -42,20 +25,15 @@ export class CountryService {
           poblacion: c.population,
           code: c.cca3,
         }))),
+        catchError( () => of([]) )
+
 
       );
   }
 
-  searchByRegion(region: string){
-    console.log(">>> SEARCH2: " +  region.toUpperCase());
-    
-    //this._listCountries =  LIST_COUNTRIES.filter(c => c.region.toUpperCase().includes(region.toUpperCase()));
-    this.searchByRegionv2(region).subscribe(
-      countries =>  {this._listCountries = countries;}
-    );
-  }
+  
 
-  searchByRegionv2(region: string): Observable<any[]>{    
+  searchByRegion(region: string): Observable<any[]>{    
     return this.http.get<any[]>(`${CountryService.urlApi}/region/${region}`)
       .pipe(
         map( countries => countries.map( c => ({
@@ -66,29 +44,13 @@ export class CountryService {
           poblacion: c.population,
           code: c.cca3,
         }))),
+        catchError( () => of([]) )
 
       );
-  }
-
-  searchByCapital(capital: string){
-    console.log(">>> searchByCapital: " +  capital.toUpperCase());
-    
-    //this._listCountries =  LIST_COUNTRIES.filter(c => c.capital.toUpperCase().includes(capital.toUpperCase()));
-    this.searchByCapitalv2(capital).subscribe(
-      countries =>  {this._listCountries = countries;}
-    );
-  }
-
-  findCountryByCode(code: string): Country | null {
-    console.log(">>> findCountryByCode: " +  code.toUpperCase());
-    
-    let countries =  LIST_COUNTRIES.filter(c => c.code.toUpperCase() === code.toUpperCase());
-    console.log(countries);
-    return (countries && countries.length > 0)  ? countries[0] : null;
-  }
+  } 
 
 
-  findCountryByCodev2(code: string): Observable<any[]>{    
+  findCountryByCode(code: string): Observable<any>{    
     return this.http.get<any[]>(`${CountryService.urlApi}/alpha/${code}`)
       .pipe(
         map( countries => countries.map( c => ({
@@ -111,12 +73,14 @@ export class CountryService {
             c.translations['per']?.common
           ]
         }))),
+        map( objs => objs.length > 0 ? objs[0] : null),
+        catchError( () => of(null) )
 
       );
   }
 
 
-  searchByCapitalv2(capital: string): Observable<any[]>{    
+  searchByCapital(capital: string): Observable<any[]>{    
     return this.http.get<any[]>(`${CountryService.urlApi}/capital/${capital}`)
       .pipe(
         map( countries => countries.map( c => ({
@@ -127,6 +91,7 @@ export class CountryService {
           poblacion: c.population,
           code: c.cca3,
         }))),
+        catchError( () => of([]) )
 
       );
   }
